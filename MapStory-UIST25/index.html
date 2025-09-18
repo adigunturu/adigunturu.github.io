@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aditya Gunturu - MapStory</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('./background.jpg') center center/cover no-repeat;
+            font-family: Arial, sans-serif;
+        }
+
+        .video-container {
+            width: 800px;
+            height: 450px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            background: #000;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        @media (max-width: 900px) {
+            .video-container {
+                width: 90vw;
+                height: calc(90vw * 9 / 16);
+                margin: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <iframe 
+            src="https://www.youtube.com/embed/Z9hdxHDVXyM?autoplay=1&mute=1&loop=1&playlist=Z9hdxHDVXyM"
+            allow="autoplay; encrypted-media"
+            allowfullscreen>
+        </iframe>
+    </div>
+</body>
+</html>
