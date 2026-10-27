@@ -187,3 +187,12 @@ footer a { color: var(--purple); }
 /* teaser: never taller than a laptop screen (keeps its 1900:1160 shape, centred) */
 .teaser-video { width: min(100%, calc((100vh - 96px) * 1900 / 1160)); margin-inline: auto; }
 @media (max-width: 600px) { .venue-logo { height: 32px; } }
+
+/* affiliation numbers instead of logos */
+.author sup.affn { font-size: 0.68em; margin-left: 2px; color: var(--muted); font-weight: 500; vertical-align: 0.55em; line-height: 0; }
+.affiliations sup { font-size: 0.75em; margin-right: 2px; }
+.affiliations span { gap: 1px !important; align-items: flex-start !important; }
+.affiliations sup { align-self: flex-start; line-height: 1; position: relative; top: 0.05em; margin-right: 1px; }
+.venue { align-items: center; gap: 22px; }
+.venue-logo.venue-adobe { height: 30px; }
+@media (max-width: 600px) { .venue-logo.venue-adobe { height: 24px; } }
