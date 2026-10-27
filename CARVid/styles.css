@@ -199,3 +199,5 @@ footer a { color: var(--purple); }
 .venue-adobe { display: inline-flex; align-items: center; gap: 8px; font: 700 26px/1 var(--sans, "Inter", system-ui, sans-serif); color: #1d1d1f; letter-spacing: -0.01em; }
 .venue-adobe img { height: 28px; width: auto; display: block; }
 @media (max-width: 600px) { .venue-adobe { font-size: 21px; } .venue-adobe img { height: 23px; } }
+.venue-logo.venue-adobe-full { height: 30px; }
+@media (max-width: 600px) { .venue-logo.venue-adobe-full { height: 24px; } }
