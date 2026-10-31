@@ -201,3 +201,49 @@ footer a { color: var(--purple); }
 @media (max-width: 600px) { .venue-adobe { font-size: 21px; } .venue-adobe img { height: 23px; } }
 .venue-logo.venue-adobe-full { height: 30px; }
 @media (max-width: 600px) { .venue-logo.venue-adobe-full { height: 24px; } }
+.control-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 30px; }
+.control-item { margin: 0; text-align: center; }
+.control-item figcaption { margin-top: 10px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; font-size: 0.9rem; color: var(--blue); }
+@media (max-width: 600px) { .control-row { grid-template-columns: repeat(2, 1fr); } }
+.control-item .media { aspect-ratio: 420 / 800; object-fit: cover; }
+/* one heading scale for every section after the title */
+h2, .abstract h2 { font-size: 22px; color: var(--ink); line-height: 1.3; margin: 0 0 14px; font-weight: 700; }
+.section-heading h2 { margin-bottom: 14px; }
+.sub-h { font-size: 16px; font-weight: 600; color: var(--ink); margin: 36px 0 6px; }
+h2 + .sub-h { margin-top: 4px; }
+.section-intro { font-size: 15px; margin: 0 0 14px; }
+@media (max-width: 600px) { h2, .abstract h2 { font-size: 20px; } }
+.eq { margin: 18px 0 8px; padding: 14px 16px; border: 1px solid var(--border); border-radius: 8px; background: #fbfaff; overflow-x: auto; }
+.eq-label { display: block; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+.eq .katex-display { margin: 8px 0 2px; }
+.eq-intro { margin: 8px 0 0; font-size: 15px; color: var(--ink); }
+.eq-where { display: grid; grid-template-columns: max-content 1fr; gap: 6px 14px; margin: 6px 0 0; font-size: 14px; color: var(--muted); }
+.eq-where dt { color: var(--ink); text-align: right; }
+.eq-where dd { margin: 0; }
+@media (max-width: 600px) { .eq-where { grid-template-columns: 1fr; } .eq-where dt { text-align: left; } }
+/* review pass: stepper, step tags, math toggles, result labels */
+.stepper { display: flex; gap: 10px; flex-wrap: wrap; list-style: none; padding: 0; margin: 4px 0 10px; }
+.stepper li { position: relative; }
+.stepper li + li::before { content: "→"; color: var(--muted); margin-right: 10px; }
+.stepper a { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px 6px 6px; border: 1px solid var(--border); border-radius: 999px; color: var(--ink); text-decoration: none; font-size: 14px; font-weight: 600; }
+.stepper a:hover { border-color: var(--purple-accent); background: var(--purple-tint); }
+.stepper a span { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--purple); color: #fff; font-size: 12px; }
+.stepper li { display: flex; align-items: center; }
+.step-tag { display: inline-block; margin: 0 0 8px; padding: 3px 10px; border-radius: 999px; background: var(--purple-tint); color: var(--purple); font-size: 12px; font-weight: 700; letter-spacing: 0.03em; }
+[id^="step-"] { scroll-margin-top: 20px; }
+details.math { margin: 10px 0 0; }
+details.math > summary { cursor: pointer; list-style: none; display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: var(--purple); }
+details.math > summary::-webkit-details-marker { display: none; }
+details.math > summary::before { content: "▸"; transition: transform .15s; }
+details.math[open] > summary::before { transform: rotate(90deg); }
+details.math[open] > summary { margin-bottom: 4px; }
+figcaption strong { color: var(--ink); }
+.result-label { font-size: 14px; color: var(--muted); }
+.credit-line { margin-top: 18px; font-size: 13px; color: var(--muted); }
+.control-row.three { grid-template-columns: repeat(3, 1fr); }
+.control-item figcaption.win { color: var(--purple); }
+@media (max-width: 600px) { .control-row.three { grid-template-columns: repeat(3, 1fr); gap: 8px; } }
+.control-row.three .media { aspect-ratio: 9 / 16; }
+.inset { margin-top: 10px; }
+.inset img { display: block; width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--border); }
+.inset span { display: block; margin-top: 6px; font-size: 13px; font-weight: 600; color: var(--muted); }

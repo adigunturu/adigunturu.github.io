@@ -8,11 +8,21 @@
   <meta property="og:title" content="CARVid">
   <meta property="og:description" content="Retarget on-screen graphics to new aspect ratios while keeping text readable and design intact.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://adigunturu.github.io/CARVid/">
+  <meta property="og:image" content="https://adigunturu.github.io/CARVid/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CARVid: Content-Aware Retargeting of Videos with On-Screen Graphics">
+  <meta name="twitter:image" content="https://adigunturu.github.io/CARVid/assets/og.png">
   <title>CARVid</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=21">
+  <link rel="stylesheet" href="styles.css?v=31">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]})"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -32,7 +42,7 @@
         <a class="button" href="https://doi.org/10.1145/3830398.3830716"><span aria-hidden="true">↗</span> Read the paper</a>
         <a class="button primary" href="#video"><span aria-hidden="true">▷</span> Watch video</a>
         <a class="button" href="#approach"><span aria-hidden="true">▦</span> How it works</a>
-        <span class="button soon" role="link" aria-disabled="true" title="Coming soon"><span aria-hidden="true">◫</span> View interactive gallery</span>
+        <!-- <span class="button soon" role="link" aria-disabled="true" title="Coming soon"><span aria-hidden="true">◫</span> View interactive gallery</span> -->
       </div>
     </header>
 
@@ -54,61 +64,137 @@
         <p>Editors routinely reframe landscape videos to portrait for social media, but lower thirds, title cards and scoreboards get cropped, shrunk or distorted along the way. CARVid is a content-aware retargeting tool that recovers these graphics from flat, already-published videos and recomposes them for the new aspect ratio. It combines foundation vision and segmentation models with a novel image processing algorithm for text-aware scaling, layout-aware segmentation and content-aware space removal, supporting both automatic and user-directed recomposition.</p>
       </section>
 
+      <section id="why" class="section">
+        <h2>Why not just crop or scale?</h2>
+        <p class="section-intro">Reframing a 16:9 video to 9:16 the usual ways breaks its graphics: cropping cuts the lower third in half, and scaling the whole frame to fit shrinks it until the text is hard to read. CARVid recomposes the graphic for the new frame instead.</p>
+        <div class="control-row three">
+          <figure class="control-item"><video class="media" poster="assets/posters/baseline_crop.jpg?v=2" src="assets/baseline/crop.mp4?v=2" autoplay muted loop playsinline preload="metadata" aria-label="Center crop to 9:16: the lower third is cut off"></video><figcaption>Crop</figcaption></figure>
+          <figure class="control-item"><video class="media" poster="assets/posters/baseline_scale.jpg?v=2" src="assets/baseline/scale.mp4?v=2" autoplay muted loop playsinline preload="metadata" aria-label="Scale to fit 9:16: the lower third becomes too small to read"></video><figcaption>Scale to fit</figcaption></figure>
+          <figure class="control-item"><video class="media" poster="assets/posters/baseline_carvid.jpg?v=2" src="assets/baseline/carvid.mp4?v=2" autoplay muted loop playsinline preload="metadata" aria-label="CARVid: the lower third is recomposed for 9:16 and stays readable"></video><figcaption class="win">CARVid</figcaption></figure>
+        </div>
+      </section>
+
       <section id="approach" class="section">
         <h2>How it works</h2>
-        <div class="features">
-          <article>
-            <span class="feature-number">DECOMPOSE</span>
-            <h3>Pull out the graphic</h3>
-            <p>A vision-language model finds the graphic on a reference frame and a segmentation model tracks it into a clean animated layer, with no project files needed.</p>
-          </article>
-          <article class="text">
-            <span class="feature-number">SEGMENT</span>
-            <h3>Find its parts</h3>
-            <p>Layout-aware segmentation splits the graphic into text blocks, logos and branding that can be edited on their own.</p>
-          </article>
-          <article class="cut">
-            <span class="feature-number">RECOMPOSE</span>
-            <h3>Fit the new width</h3>
-            <p>Text-aware scaling, content-aware space removal and layout reflow fit the graphic automatically, or the editor rearranges it directly.</p>
-          </article>
-        </div>
+        <h3 class="sub-h">Decomposition, from video to editable layers</h3>
+        <p class="section-intro">A vision-language model finds each graphic on a reference frame and a segmentation model tracks it into a clean animated layer, with no project files needed.</p>
+        <figure class="hero-figure explainer">
+          <video class="media" poster="assets/posters/howitworks_decomposition.jpg" src="assets/howitworks/decomposition.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Decomposition: the Oscars lower third is pulled out of the input video into its own layer"></video>
+          <figcaption><strong>Decomposition.</strong> The Oscars lower third is found on a reference frame and pulled out of the video as its own animated layer, shown over the purple key color.</figcaption>
+        </figure>
+        <figure class="hero-figure explainer">
+          <video class="media" poster="assets/posters/howitworks_text_refinement.jpg" src="assets/howitworks/text_refinement.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Text refinement compared with SAM on a name super"></video>
+          <figcaption><strong>Text refinement.</strong> SAM alone drops parts of the name super and pulls in background; refining the mask with the detected text recovers every line cleanly.</figcaption>
+        </figure>
+        <figure class="hero-figure explainer">
+          <video class="media" poster="assets/posters/howitworks_glyph_refinement.jpg" src="assets/howitworks/glyph_refinement.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Glyph refinement compared with SAM on a small logo"></video>
+          <figcaption><strong>Glyph refinement.</strong> On a small logo SAM keeps a patch of background around the glyph; glyph refinement keeps only the glyph.</figcaption>
+        </figure>
         <h3 class="sub-h">Recomposition, from least to most disruptive</h3>
         <p class="section-intro">CARVid tries the gentlest operation first and moves on only when it cannot reach the target width with readable text.</p>
-        <figure class="hero-figure explainer">
-          <video class="media" src="assets/howitworks/scaling.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Text-aware scaling animation"></video>
-          <figcaption>The graphic scales down uniformly, animation and all, until its smallest text reaches the minimum legible height of 16 px. If it is still wider than the target, CARVid moves on.</figcaption>
+        <ol class="stepper">
+          <li><a href="#step-scale"><span>1</span>Scale</a></li>
+          <li><a href="#step-space"><span>2</span>Remove space</a></li>
+          <li><a href="#step-reflow"><span>3</span>Reflow</a></li>
+        </ol>
+        <figure class="hero-figure explainer" id="step-scale">
+          <span class="step-tag">Step 1 · Scale</span>
+          <video class="media" poster="assets/posters/howitworks_scaling.jpg" src="assets/howitworks/scaling.mp4?v=3" autoplay muted loop playsinline preload="metadata" aria-label="Text-aware scaling animation"></video>
+          <figcaption>If the graphic is still wider than the target when its smallest text reaches 16 px, CARVid moves on to space removal.</figcaption>
         </figure>
-        <figure class="hero-figure explainer">
-          <video class="media" src="assets/howitworks/space_removal.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Content-aware space removal animation"></video>
+        <details class="math">
+          <summary>Show the math</summary>
+            <div class="eq"><span class="eq-label">Scaling condition</span>
+$$
+h_{\text{text}} \;\geq\; h_{\min} = 16\,\text{px}
+$$
+            <dl class="eq-where"><dt>$h_{\text{text}}$</dt><dd>height of the smallest text in the graphic, measured across the video</dd><dt>$h_{\min}$</dt><dd>minimum legible height, 16 px, following platform readability guidelines</dd></dl>
+            </div>
+        </details>
+        <figure class="hero-figure explainer" id="step-space">
+          <span class="step-tag">Step 2 · Remove space</span>
+          <video class="media" poster="assets/posters/howitworks_space_removal.jpg" src="assets/howitworks/space_removal.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Content-aware space removal animation"></video>
           <figcaption>OCR text and strong vertical edges are protected; only columns with neither can go. Each cut follows the animation as one coherent column path, so the graphic narrows without breaking its slide-in and slide-out.</figcaption>
         </figure>
-        <figure class="hero-figure explainer">
-          <video class="media" src="assets/howitworks/reflow.mp4?v=5" autoplay muted loop playsinline preload="metadata" aria-label="Layout reflow animation: a proposer offers cuts, a critic picks the left and then the right boundary line, and the Oscars lower third separates into its parts"></video>
+        <details class="math">
+          <summary>Show the math</summary>
+            <div class="eq"><span class="eq-label">Eq. 1</span>
+          <p class="eq-intro">The removed column is one path $x_{1:F}$ through the clip, chosen to minimize three costs:</p>$$
+\begin{aligned}
+\min_{x_{1:F}} \quad C_{\text{energy}} & + C_{\text{lookahead}} + C_{\text{motion}} \\[0.3em]
+C_{\text{energy}} & = \textstyle\sum_f \phi_f(x_f) \\
+C_{\text{lookahead}} & = \textstyle\sum_f |x_f - x_{f-1}| \\
+C_{\text{motion}} & = \textstyle\sum_f u_f(x_f) \\[0.3em]
+\text{subject to} \quad x_f \in S_f, & \quad x_f \notin N_f, \quad |x_f - x_{f-1}| \leq B
+\end{aligned}
+$$
+            <dl class="eq-where"><dt>$\phi_f(x)$</dt><dd>energy of column $x$ in frame $f$; text, logos and vertical borders are high, so they are never cut</dd><dt>$|x_f - x_{f-1}|$</dt><dd>how far the column jumps between frames, which keeps the path steady</dd><dt>$u_f(x)$</dt><dd>optical flow near the column, so scrolling text and sliding elements are avoided</dd><dt>$S_f,\ N_f,\ B$</dt><dd>eligible low-importance columns, protected no-go regions, and the band the column may move within per frame</dd></dl>
+            <p class="eq-intro">The path is removed, the energies are updated, and this repeats until the target width is reached or no path remains.</p>
+            </div>
+        </details>
+        <figure class="hero-figure explainer" id="step-reflow">
+          <span class="step-tag">Step 3 · Reflow</span>
+          <video class="media" poster="assets/posters/howitworks_reflow.jpg" src="assets/howitworks/reflow.mp4?v=5" autoplay muted loop playsinline preload="metadata" aria-label="Layout reflow animation: a proposer offers cuts, a critic picks the left and then the right boundary line, and the Oscars lower third separates into its parts"></video>
           <figcaption>A proposer offers candidate cuts and a critic picks the one along a boundary line, ignoring cuts through empty space. Here the first loop cuts along the left line and the second along the right line, separating the Oscars logo, the story headline and the NBC NOW logo so each part can be placed on its own.</figcaption>
         </figure>
         <figure class="hero-figure explainer">
           <img class="media" src="assets/howitworks/reflow_hcut.gif" alt="Horizontal cuts: the critic first cuts along the longest line above the ticker, then along the line under the tab, separating the CBS Daily Report graphic into three rows" loading="lazy">
-          <figcaption>Cuts can be horizontal too. On this lower third the critic first picks the longest line, above the ticker, and marks the short line under the tab as low priority; the next loop cuts along that line, splitting the graphic into three rows.</figcaption>
+          <figcaption><strong>Horizontal cuts.</strong> On this lower third the critic first picks the longest line, above the ticker, and marks the short line under the tab as low priority; the next loop cuts along that line, splitting the graphic into three rows.</figcaption>
         </figure>
+        <details class="math">
+          <summary>Show the math</summary>
+            <div class="eq"><span class="eq-label">Eq. 2</span>
+          <p class="eq-intro">When removing space is not enough, the graphic is cut and reflowed. Candidate columns are ranked on $\overline{E}$, the energy averaged over sampled frames:</p>$$
+x^\star = \arg\max_{x}\ \bigl(w_t\, s_{\text{text}}(x) + w_e\, s_{\text{energy}}(x) + w_a\, s_{\text{edge}}(x) + w_c\, s_{\text{center}}(x)\bigr)
+$$
+            <dl class="eq-where"><dt>$s_{\text{text}}$</dt><dd>avoids columns with persistent text</dd><dt>$s_{\text{energy}}$</dt><dd>prefers low-energy (empty) columns</dd><dt>$s_{\text{edge}}$</dt><dd>rewards alignment with existing vertical dividers</dd><dt>$s_{\text{center}}$</dt><dd>mildly favors balanced left and right parts; $w$ are their weights</dd></dl>
+            </div>
+            <div class="eq"><span class="eq-label">Eq. 3</span>
+          <p class="eq-intro">Energy alone cannot tell whether a cut leaves each part meaningful, so the top candidates $\mathcal{C}$ from Eq. 2 go to a vision-language model that picks the final cut $p^\star$:</p>$$
+\begin{aligned}
+p^\star &= \mathrm{Critic}\bigl(G,\ \overline{E},\ p_{\text{naive}},\ p_{\text{proposer}}\bigr) \\[0.3em]
+p_{\text{proposer}} &= \mathrm{Proposer}\bigl(G,\ \overline{E},\ \mathcal{C}\bigr) \\
+p_{\text{naive}} &= \mathrm{Naive}(G) \\[0.3em]
+\text{subject to}\quad & \mathrm{Cuttable}(G), \quad \min_{q\in N}|p^\star-q|>3\,\text{px}
+\end{aligned}
+$$
+            <dl class="eq-where"><dt>$\mathrm{Proposer}$</dt><dd>chooses among the candidate cuts, drawn as numbered lines on the graphic $G$ and its energy map</dd><dt>$\mathrm{Naive}$</dt><dd>proposes a cut from the clean graphic alone, as an independent alternative</dd><dt>$\mathrm{Critic}$</dt><dd>compares both, rejects cuts through text or a content group, prefers divider lines, and may nudge the cut or return none</dd><dt>$\mathrm{Cuttable},\ N$</dt><dd>cohesive graphics are left whole, and the final cut must stay more than 3 px from any protected region</dd></dl>
+            </div>
+        </details>
       </section>
+      <section id="control" class="section">
+        <h2>User-directed control</h2>
+        <p class="section-intro">Editors stay in control: move, delete, scale or crop any segment, or describe an edit in words.</p>
+        <div class="control-row">
+          <figure class="control-item"><video class="media" poster="assets/posters/control_move.jpg" src="assets/control/move.mp4?v=2" autoplay muted loop playsinline preload="metadata" aria-label="Move"></video><figcaption>Move</figcaption></figure>
+          <figure class="control-item"><video class="media" poster="assets/posters/control_delete.jpg" src="assets/control/delete.mp4?v=2" autoplay muted loop playsinline preload="metadata" aria-label="Delete"></video><figcaption>Delete</figcaption></figure>
+          <figure class="control-item"><video class="media" poster="assets/posters/control_scale_crop.jpg" src="assets/control/scale_crop.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Scale/Crop"></video><figcaption>Scale/Crop</figcaption></figure>
+          <figure class="control-item"><video class="media" poster="assets/posters/control_text_edits.jpg" src="assets/control/text_edits.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Text edits"></video><figcaption>Text edits</figcaption></figure>
+        </div>
+      </section>
+
       <section id="results" class="section">
         <h2>Results</h2>
         <p class="section-intro">Each row shows the 16:9 input on the left and CARVid's 9:16 output on the right, at the same height.</p>
         <figure class="hero-figure explainer">
-          <video class="media" src="assets/results/43_oscars_stunts_3alts.mp4?v=2" autoplay muted loop playsinline preload="metadata" aria-label="Oscars stunts: input and three 9:16 alternatives"></video>
+          <video class="media" poster="assets/posters/results_43_oscars_stunts_3alts.jpg" src="assets/results/43_oscars_stunts_3alts.mp4?v=2" autoplay muted loop playsinline preload="metadata" aria-label="Oscars stunts: input and three 9:16 alternatives"></video>
+          <figcaption class="result-label">Oscars stunts story, NBC News NOW · input and three 9:16 alternatives</figcaption>
         </figure>
         <figure class="hero-figure explainer">
-          <video class="media" src="assets/results/47_cbs_daily_report_pair.mp4" autoplay muted loop playsinline preload="metadata" aria-label="CBS Daily Report: input and 9:16 result"></video>
+          <video class="media" poster="assets/posters/results_47_cbs_daily_report_pair.jpg" src="assets/results/47_cbs_daily_report_pair.mp4" autoplay muted loop playsinline preload="metadata" aria-label="CBS Daily Report: input and 9:16 result"></video>
+          <figcaption class="result-label">The Daily Report, CBS News</figcaption>
         </figure>
         <figure class="hero-figure explainer">
-          <video class="media" src="assets/results/70_jensen_huang_pair.mp4" autoplay muted loop playsinline preload="metadata" aria-label="CNBC interview: input and 9:16 result"></video>
+          <video class="media" poster="assets/posters/results_70_jensen_huang_pair.jpg" src="assets/results/70_jensen_huang_pair.mp4" autoplay muted loop playsinline preload="metadata" aria-label="CNBC interview: input and 9:16 result"></video>
+          <figcaption class="result-label">Interview, CNBC</figcaption>
         </figure>
         <figure class="hero-figure explainer">
-          <video class="media" src="assets/results/71_f1_race_tower_pair.mp4" autoplay muted loop playsinline preload="metadata" aria-label="F1 race tower: input and 9:16 result"></video>
+          <video class="media" poster="assets/posters/results_71_f1_race_tower_pair.jpg" src="assets/results/71_f1_race_tower_pair.mp4" autoplay muted loop playsinline preload="metadata" aria-label="F1 race tower: input and 9:16 result"></video>
+          <figcaption class="result-label">Race timing tower, Formula 1</figcaption>
         </figure>
         <figure class="hero-figure explainer">
-          <video class="media" src="assets/results/72_f1_qualifying_pair.mp4" autoplay muted loop playsinline preload="metadata" aria-label="F1 qualifying: input and 9:16 result"></video>
+          <video class="media" poster="assets/posters/results_72_f1_qualifying_pair.jpg" src="assets/results/72_f1_qualifying_pair.mp4" autoplay muted loop playsinline preload="metadata" aria-label="F1 qualifying: input and 9:16 result"></video>
+          <figcaption class="result-label">Qualifying graphics, Formula 1</figcaption>
         </figure>
       </section>
       <section id="citation" class="section citation">
@@ -130,5 +216,19 @@
     </div>
   </main>
   <footer class="wrap"><span>CARVid <span class="footer-divider">/</span> UIST 2026</span><span><a href="https://adigunturu.github.io/">Aditya Gunturu</a></span></footer>
+  <script>
+    // play only the videos on screen; the rest stay paused (and unloaded until first seen)
+    (() => {
+      const vids = document.querySelectorAll('video[autoplay]');
+      if (!('IntersectionObserver' in window)) return;
+      const io = new IntersectionObserver(entries => {
+        for (const e of entries) {
+          if (e.isIntersecting) e.target.play().catch(() => {});
+          else e.target.pause();
+        }
+      }, { rootMargin: '200px 0px' });
+      vids.forEach(v => { v.removeAttribute('autoplay'); v.pause(); io.observe(v); });
+    })();
+  </script>
 </body>
 </html>
