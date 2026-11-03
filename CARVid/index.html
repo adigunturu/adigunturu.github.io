@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=31">
+  <link rel="stylesheet" href="styles.css?v=34">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]})"></script>
@@ -42,7 +42,7 @@
         <a class="button" href="https://doi.org/10.1145/3830398.3830716"><span aria-hidden="true">↗</span> Read the paper</a>
         <a class="button primary" href="#video"><span aria-hidden="true">▷</span> Watch video</a>
         <a class="button" href="#approach"><span aria-hidden="true">▦</span> How it works</a>
-        <!-- <span class="button soon" role="link" aria-disabled="true" title="Coming soon"><span aria-hidden="true">◫</span> View interactive gallery</span> -->
+        <span class="button soon" role="link" aria-disabled="true" title="Coming soon"><span aria-hidden="true">◫</span> Interactive gallery (coming soon)</span>
       </div>
     </header>
 
@@ -165,6 +165,7 @@ $$
       <section id="control" class="section">
         <h2>User-directed control</h2>
         <p class="section-intro">Editors stay in control: move, delete, scale or crop any segment, or describe an edit in words.</p>
+        <figure class="control-item wide"><video class="media" poster="assets/posters/control_batch_text_edits.jpg" src="assets/control/batch_text_edits.mp4" autoplay muted loop playsinline preload="metadata" aria-label="One text edit, &quot;remove all branding and ads to save space&quot;, applied to three clips at once"></video><figcaption>One text edit, many clips</figcaption></figure>
         <div class="control-row">
           <figure class="control-item"><video class="media" poster="assets/posters/control_move.jpg" src="assets/control/move.mp4?v=2" autoplay muted loop playsinline preload="metadata" aria-label="Move"></video><figcaption>Move</figcaption></figure>
           <figure class="control-item"><video class="media" poster="assets/posters/control_delete.jpg" src="assets/control/delete.mp4?v=2" autoplay muted loop playsinline preload="metadata" aria-label="Delete"></video><figcaption>Delete</figcaption></figure>
@@ -181,12 +182,16 @@ $$
           <figcaption class="result-label">Oscars stunts story, NBC News NOW · input and three 9:16 alternatives</figcaption>
         </figure>
         <figure class="hero-figure explainer">
-          <video class="media" poster="assets/posters/results_47_cbs_daily_report_pair.jpg" src="assets/results/47_cbs_daily_report_pair.mp4" autoplay muted loop playsinline preload="metadata" aria-label="CBS Daily Report: input and 9:16 result"></video>
-          <figcaption class="result-label">The Daily Report, CBS News</figcaption>
-        </figure>
-        <figure class="hero-figure explainer">
           <video class="media" poster="assets/posters/results_70_jensen_huang_pair.jpg" src="assets/results/70_jensen_huang_pair.mp4" autoplay muted loop playsinline preload="metadata" aria-label="CNBC interview: input and 9:16 result"></video>
           <figcaption class="result-label">Interview, CNBC</figcaption>
+        </figure>
+        <figure class="hero-figure explainer">
+          <video class="media" poster="assets/posters/results_84_jamie_dimon_pair.jpg" src="assets/results/84_jamie_dimon_pair.mp4" autoplay muted loop playsinline preload="metadata" aria-label="CNBC Squawk Box interview: input and 9:16 result"></video>
+          <figcaption class="result-label">Squawk Box interview, CNBC</figcaption>
+        </figure>
+        <figure class="hero-figure explainer">
+          <video class="media" poster="assets/posters/results_55_blizzard_news_pair.jpg" src="assets/results/55_blizzard_news_pair.mp4" autoplay muted loop playsinline preload="metadata" aria-label="CBS breaking news: input and 9:16 result"></video>
+          <figcaption class="result-label">Breaking news, CBS News</figcaption>
         </figure>
         <figure class="hero-figure explainer">
           <video class="media" poster="assets/posters/results_71_f1_race_tower_pair.jpg" src="assets/results/71_f1_race_tower_pair.mp4" autoplay muted loop playsinline preload="metadata" aria-label="F1 race tower: input and 9:16 result"></video>

@@ -69,8 +69,8 @@ sup { color: var(--purple); font-size: 10px; margin-left: 2px; }
 .button:hover { background: var(--purple-tint); color: var(--purple); text-decoration: none; }
 .button.primary { color: white; background: var(--purple); border-color: var(--purple); }
 .button.primary:hover { color: white; background: var(--purple-dark); border-color: var(--purple-dark); }
-.button.soon { border-color: #cfcfd6; color: #8a8a94; cursor: default; }
-.button.soon:hover { background: white; color: #8a8a94; }
+.button.soon { border-color: #dcdce2; color: #8a8a94; background: #f1f1f4; cursor: not-allowed; }
+.button.soon:hover { background: #f1f1f4; color: #8a8a94; }
 
 /* ---------- Figures ---------- */
 figure { margin: 0; }
@@ -247,3 +247,9 @@ figcaption strong { color: var(--ink); }
 .inset { margin-top: 10px; }
 .inset img { display: block; width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--border); }
 .inset span { display: block; margin-top: 6px; font-size: 13px; font-weight: 600; color: var(--muted); }
+
+/* full-width clip under the control row (one text edit applied to several clips) */
+.control-item.wide { margin-top: 24px; }
+.control-row + .control-item.wide .media { aspect-ratio: auto; object-fit: contain; background: #fff; }
+.control-item.wide { margin: 18px 0 8px; }
+.control-item.wide .media { aspect-ratio: auto; object-fit: contain; background: #fff; }
