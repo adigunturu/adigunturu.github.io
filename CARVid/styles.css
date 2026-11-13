@@ -253,3 +253,44 @@ figcaption strong { color: var(--ink); }
 .control-row + .control-item.wide .media { aspect-ratio: auto; object-fit: contain; background: #fff; }
 .control-item.wide { margin: 18px 0 8px; }
 .control-item.wide .media { aspect-ratio: auto; object-fit: contain; background: #fff; }
+
+/* ---------- Loading: sizes come from the width/height attributes, so the page never jumps as clips arrive ---------- */
+video.media, .teaser-video { height: auto; }
+.yt-facade { position: relative; display: block; width: 100%; height: 100%; padding: 0; border: 0; cursor: pointer; background: #1b1830; }
+.yt-facade img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.yt-play { position: absolute; left: 50%; top: 50%; width: 68px; height: 48px; margin: -24px 0 0 -34px; border-radius: 14px;
+  background: rgba(23, 23, 23, .82); transition: background .15s; }
+.yt-play::after { content: ""; position: absolute; left: 28px; top: 15px; border-style: solid; border-width: 9px 0 9px 16px;
+  border-color: transparent transparent transparent #fff; }
+.yt-facade:hover .yt-play, .yt-facade:focus-visible .yt-play { background: #f00; }
+details.math:not(.ready) .eq { visibility: hidden; }                   /* raw TeX until KaTeX has drawn it */
+
+/* ---------- Play / pause button at the bottom left of every clip (the loader wraps each video in .vwrap) ---------- */
+.vwrap { position: relative; display: block; }
+.vwrap:has(> .teaser-video) { width: min(100%, calc((100vh - 96px) * 1900 / 1160)); margin-inline: auto; }
+.vwrap > .teaser-video { width: 100%; }
+.vbtn { position: absolute; left: 10px; bottom: 10px; z-index: 2; width: 34px; height: 34px; padding: 0; border: 0; border-radius: 50%;
+  display: grid; place-items: center; background: rgba(20, 18, 32, .62); color: #fff; cursor: pointer; opacity: .8;
+  transition: opacity .15s, background .15s; }
+.vbtn svg { width: 18px; height: 18px; fill: currentColor; }
+.vwrap:hover .vbtn, .vbtn:focus-visible { opacity: 1; background: rgba(91, 63, 214, .9); }
+@media (max-width: 600px) { .vbtn { left: 6px; bottom: 6px; width: 28px; height: 28px; } .vbtn svg { width: 15px; height: 15px; } }
+
+/* ---------- Quality switch beside the play button: Auto · HD · SD in one row ---------- */
+.vq { position: absolute; left: 50px; bottom: 10px; z-index: 2; display: flex; gap: 2px; height: 34px; padding: 3px;
+  box-sizing: border-box; border-radius: 17px; background: rgba(20, 18, 32, .62); opacity: .8; transition: opacity .15s, background .15s; }
+.vwrap:hover .vq, .vq:focus-within { opacity: 1; background: rgba(20, 18, 32, .82); }
+.vq button { height: 28px; padding: 0 9px; border: 0; border-radius: 14px; background: none; color: rgba(255, 255, 255, .75);
+  font-family: inherit; font-size: 12px; font-weight: 600; line-height: 28px; letter-spacing: .03em; white-space: nowrap; cursor: pointer; }
+.vq button:hover { color: #fff; background: rgba(255, 255, 255, .14); }
+.vq button[aria-checked="true"] { color: #fff; background: rgba(91, 63, 214, .95); }
+@media (max-width: 600px) {
+  .vq { left: 40px; bottom: 6px; height: 28px; padding: 2px; }
+  .vq button { height: 24px; padding: 0 7px; font-size: 11px; line-height: 24px; }
+}
+/* narrow clips (the three small cards on a phone): the switch sits on its own row above the pause button */
+.vwrap { container-type: inline-size; }
+@container (max-width: 200px) {
+  .vq { left: 6px; bottom: 40px; height: 26px; padding: 2px; gap: 0; }
+  .vq button { height: 22px; padding: 0 4px; font-size: 10px; line-height: 22px; letter-spacing: -.01em; }
+}

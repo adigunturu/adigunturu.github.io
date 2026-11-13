@@ -1,0 +1,112 @@
+{
+ "teaser_fig1": {
+  "w": 1600,
+  "h": 976,
+  "sd": 960
+ },
+ "baseline_crop": {
+  "w": 420,
+  "h": 748,
+  "sd": 240
+ },
+ "baseline_scale": {
+  "w": 420,
+  "h": 746,
+  "sd": 240
+ },
+ "baseline_carvid": {
+  "w": 420,
+  "h": 746,
+  "sd": 240
+ },
+ "hiw_decomposition": {
+  "w": 1600,
+  "h": 540,
+  "sd": 800
+ },
+ "hiw_text_refinement": {
+  "w": 1600,
+  "h": 464,
+  "sd": 800
+ },
+ "hiw_glyph_refinement": {
+  "w": 1600,
+  "h": 676,
+  "sd": 800
+ },
+ "hiw_scaling": {
+  "w": 1600,
+  "h": 504,
+  "sd": 800
+ },
+ "hiw_space_removal": {
+  "w": 1600,
+  "h": 546,
+  "sd": 800
+ },
+ "hiw_reflow": {
+  "w": 1600,
+  "h": 496,
+  "sd": 800
+ },
+ "hiw_reflow_hcut": {
+  "w": 1600,
+  "h": 408,
+  "sd": 800
+ },
+ "ctl_batch_text_edits": {
+  "w": 1400,
+  "h": 920,
+  "sd": 800
+ },
+ "ctl_move": {
+  "w": 420,
+  "h": 812,
+  "sd": 240
+ },
+ "ctl_delete": {
+  "w": 420,
+  "h": 812,
+  "sd": 240
+ },
+ "ctl_scale_crop": {
+  "w": 420,
+  "h": 794,
+  "sd": 240
+ },
+ "ctl_text_edits": {
+  "w": 420,
+  "h": 792,
+  "sd": 240
+ },
+ "res_43_oscars_3alts": {
+  "w": 1800,
+  "h": 506,
+  "sd": 800
+ },
+ "res_70_jensen_huang": {
+  "w": 1280,
+  "h": 540,
+  "sd": 640
+ },
+ "res_84_jamie_dimon": {
+  "w": 1280,
+  "h": 540,
+  "sd": 640
+ },
+ "res_55_blizzard_news": {
+  "w": 1280,
+  "h": 540,
+  "sd": 640
+ },
+ "res_71_f1_race_tower": {
+  "w": 1280,
+  "h": 540,
+  "sd": 640
+ },
+ "res_72_f1_qualifying": {
+  "w": 1280,
+  "h": 540,
+  "sd": 640
+ }
+}
